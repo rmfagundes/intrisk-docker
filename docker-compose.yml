@@ -1,6 +1,6 @@
 neo4j:
     image: neo4j
-    ports: 
+    ports:
       - "7474:7474"
 # postgres:
 #     image: postgres
@@ -44,7 +44,7 @@ ruby-intrisk-api:
     build: ./../intrisk-api
     ports:
       - "3002:9292"
-    links: 
+    links:
       - neo4j
       - mail
     volumes:
@@ -56,10 +56,9 @@ ruby-intrisk-api:
       - LANG=C.UTF-8
       - BUNDLE_PATH=/bundle
     command: bash -c "cd /app && rm -f /app/tmp/pids/server.pid && gem install grape-entity && bundle install && rubocop && rspec -c -P spec/**/*_spec.rb && shotgun --server=thin --port=9292 --host=0.0.0.0"
-dart-intrisk-web:
-    build: ./../intrisk-web
-    ports:
-      - "8080:8080"
-      - "8181:8181"
-    links:
-      - ruby-intrisk-api
+#angular2-intrisk-web:
+#    build: ./../intrisk-angular2
+#    ports:
+#      - "8080:8080"
+#    links:
+#      - ruby-intrisk-api
