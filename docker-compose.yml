@@ -56,9 +56,15 @@ ruby-intrisk-api:
       - LANG=C.UTF-8
       - BUNDLE_PATH=/bundle
     command: bash -c "cd /app && rm -f /app/tmp/pids/server.pid && gem install grape-entity && bundle install && rubocop && rspec -c -P spec/**/*_spec.rb && shotgun --server=thin --port=9292 --host=0.0.0.0"
+#bundle-intrisk-web:
+#    build: ./../intrisk-angular2
+#    volumes:
+#      - /bundle
 #angular2-intrisk-web:
 #    build: ./../intrisk-angular2
 #    ports:
 #      - "8080:8080"
+#    volumes:
+#      - ./../intrisk-angular2:/project/app
 #    links:
 #      - ruby-intrisk-api
